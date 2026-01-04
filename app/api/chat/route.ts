@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Create a message with computer use capabilities
-    const response = await anthropic.messages.create({
+    const response = await (anthropic.messages as any).create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 4096,
       tools: [
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
           type: 'bash_20241022',
           name: 'bash',
         },
-      ] as any,
+      ],
       messages: [
         {
           role: 'user',
@@ -46,8 +46,8 @@ export async function POST(request: NextRequest) {
     });
 
     // Extract the response
-    const textContent = response.content.find((block: any) => block.type === 'text');
-    const toolUse = response.content.filter((block: any) => block.type === 'tool_use');
+    const textContent = (response.content as any).find((block: any) => block.type === 'text');
+    const toolUse = (response.content as any).filter((block: any) => block.type === 'tool_use');
 
     return NextResponse.json({
       success: true,

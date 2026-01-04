@@ -23,18 +23,12 @@ export async function POST(request: NextRequest) {
       max_tokens: 4096,
       tools: [
         {
-          type: 'computer_20241022',
-          name: 'computer',
-          display_width_px: 1920,
-          display_height_px: 1080,
-        },
-        {
-          type: 'text_editor_20241022',
-          name: 'str_replace_editor',
-        },
-        {
-          type: 'bash_20241022',
+          type: 'bash_20250124',
           name: 'bash',
+        },
+        {
+          type: 'text_editor_20250124',
+          name: 'str_replace_editor',
         },
       ],
       messages: [
